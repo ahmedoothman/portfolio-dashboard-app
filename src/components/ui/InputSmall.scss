@@ -1,0 +1,82 @@
+@import '../../styles/base.scss';
+.normal {
+  width: 250px;
+  height: 30px;
+  background-color: $color-white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-family: $main-font;
+    font-weight: 600;
+    font-size: 14px;
+    // placeholder
+    &::placeholder {
+      color: $color-primary-dark;
+      font-family: $main-font;
+      opacity: 0.8;
+      font-size: 14px;
+      font-weight: 600;
+
+      text-transform: uppercase;
+    }
+    // focus
+    &:focus {
+      outline: none;
+    }
+    // active
+    &:active {
+      outline: none;
+    }
+  }
+}
+
+.error {
+  width: 250px;
+  height: 30px;
+  background-color: $color-danger;
+  opacity: 0.9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-family: $main-font;
+    font-weight: 600;
+    font-size: 14px;
+    color: $color-white;
+    // placeholder
+    &::placeholder {
+      color: $color-primary-dark;
+      font-family: $main-font;
+      opacity: 0.8;
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-white;
+      text-transform: uppercase;
+    }
+    // focus
+    &:focus {
+      outline: none;
+    }
+    // active
+    &:active {
+      outline: none;
+    }
+  }
+}

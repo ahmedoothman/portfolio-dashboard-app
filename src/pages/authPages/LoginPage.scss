@@ -1,0 +1,20 @@
+@import '../../styles/base.scss';
+.forgot-password {
+  width: 100%;
+  text-align: left;
+  padding-left: 11px;
+  a {
+    color: $color-secondary;
+    text-decoration: none;
+    font-family: $main-font;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+    // hover
+    &:hover {
+      border-bottom: 2px solid $color-secondary;
+    }
+  }
+}

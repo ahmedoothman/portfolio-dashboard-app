@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+.normal {
+  min-width: 120px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-family: $main-font;
+  font-weight: 600;
+  background-color: $color-secondary-light;
+  color: $color-white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  // hover
+  &:hover {
+    background-color: $color-secondary;
+  }
+}
