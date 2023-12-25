@@ -15,7 +15,12 @@
         />
         <br />
 
-        <ButtonSmall type="button" text="submit">Submit</ButtonSmall>
+        <ButtonSmall type="button" text="submit" v-if="!pendingEmail"
+          >Submit</ButtonSmall
+        >
+        <ButtonSmall type="button" text="submit" v-if="pendingEmail">
+          <SpinnerSmall />
+        </ButtonSmall>
       </form>
       <form
         class="auth__form"
@@ -44,7 +49,12 @@
           :error="errorStates.passwordConfirm"
         />
         <br />
-        <ButtonSmall type="button" text="submit">Submit</ButtonSmall>
+        <ButtonSmall type="button" text="submit" v-if="!pendingOtp"
+          >Submit</ButtonSmall
+        >
+        <ButtonSmall type="button" text="submit" v-if="pendingOtp">
+          <SpinnerSmall />
+        </ButtonSmall>
       </form>
     </AuthWrapper>
   </div>

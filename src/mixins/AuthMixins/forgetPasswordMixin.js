@@ -19,6 +19,8 @@ export default {
         password: false,
         passwordConfirm: false,
       },
+      pendingEmail: false,
+      pendingOtp: false,
     };
   },
   methods: {

@@ -10,6 +10,7 @@ export default {
         email: false,
         password: false,
       },
+      pending: false,
     };
   },
   inject: ['successToast', 'errorToast'],
@@ -40,7 +41,7 @@ export default {
         });
         return;
       }
-
+      this.pending = true;
       const response = await loginService(
         this.inputData.email,
         this.inputData.password
@@ -58,6 +59,7 @@ export default {
           detail: response.message,
         });
       }
+      this.pending = false;
     },
   },
 };

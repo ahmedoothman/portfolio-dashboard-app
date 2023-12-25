@@ -1,5 +1,5 @@
 <template>
-  <button class="normal" @click="clickHandler">
+  <button v-ripple class="normal p-ripple" @click="clickHandler">
     <slot></slot>
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
   emits: ['btn-clicked'],
   data() {
     return {
-      className: 'normal',
+      className: 'normal p-ripple',
     };
   },
 

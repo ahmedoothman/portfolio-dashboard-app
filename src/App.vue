@@ -6,6 +6,7 @@
 
 <script>
 import Toast from 'primevue/toast';
+
 export default {
   name: 'App',
   components: {
@@ -34,6 +35,9 @@ export default {
       successToast: this.successToast,
       errorToast: this.errorToast,
     };
+  },
+  mounted() {
+    this.$primevue.config.ripple = true;
   },
 };
 </script>

@@ -19,7 +19,12 @@
           <router-link to="/forget-password">Forgot Password?</router-link>
         </div>
         <br />
-        <ButtonSmall type="button" text="login">Login</ButtonSmall>
+        <ButtonSmall type="button" text="login" v-if="!pending"
+          >Login</ButtonSmall
+        >
+        <ButtonSmall type="button" text="login" v-if="pending">
+          <SpinnerSmall />
+        </ButtonSmall>
       </form>
     </AuthWrapper>
   </div>
@@ -30,9 +35,9 @@ import AuthWrapper from '@/components/wrappers/AuthWrapper.vue';
 import LogoBoxWide from '@/components/LogoBoxWide.vue';
 import InputSmall from '@/components/ui/InputSmall.vue';
 import ButtonSmall from '@/components/ui/ButtonSmall.vue';
-
 // import mixins
 import loginMixin from '@/mixins/AuthMixins/loginMixin';
+import SpinnerSmall from '@/components/ui/SpinnerSmall.vue';
 export default {
   name: 'LoginPage',
   components: {
@@ -40,6 +45,7 @@ export default {
     AuthWrapper,
     InputSmall,
     ButtonSmall,
+    SpinnerSmall,
   },
 
   mixins: [loginMixin],
