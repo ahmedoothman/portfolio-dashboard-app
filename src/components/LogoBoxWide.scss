@@ -1,8 +1,15 @@
 .logo-box-wide {
-  width: 35%;
+  width: 400px;
   margin: 0 auto;
   img {
     width: 100%;
     height: 100%;
+  }
+}
+
+// media query
+@media (max-width: 768px) {
+  .logo-box-wide {
+    width: 300px;
   }
 }

@@ -1,7 +1,7 @@
 @import '../../styles/base.scss';
 .normal {
   width: 250px;
-  height: 30px;
+  height: 50px;
   background-color: $color-white;
   padding: 10px;
   margin-bottom: 10px;
@@ -41,7 +41,7 @@
 
 .error {
   width: 250px;
-  height: 30px;
+  height: 50px;
   background-color: $color-danger;
   opacity: 0.9;
   padding: 10px;

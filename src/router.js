@@ -17,7 +17,7 @@ const router = createRouter({
       path: '/',
       alias: '/login',
       component: LoginPage,
-      name: 'login-page',
+      name: 'Login',
     },
     {
       path: '/forget-password',
@@ -33,15 +33,17 @@ const router = createRouter({
         {
           path: 'home',
           component: DashboardHome,
-          name: 'dashboard-home',
+          name: 'Home',
         },
       ],
       beforeEnter: (_, _2, next) => {
-        if (isAuthenticatd(true)) {
-          next();
-        } else {
-          next({ name: 'login-page' });
-        }
+        (async () => {
+          if (await isAuthenticatd()) {
+            next();
+          } else {
+            next({ name: 'login-page' });
+          }
+        })();
       },
     },
 

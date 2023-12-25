@@ -16,7 +16,7 @@
           :error="errorStates.password"
         />
         <div class="forgot-password">
-          <router-link to="/forget-password">Forgot password?</router-link>
+          <router-link to="/forget-password">Forgot Password?</router-link>
         </div>
         <br />
         <ButtonSmall type="button" text="login">Login</ButtonSmall>
@@ -31,6 +31,8 @@ import LogoBoxWide from '@/components/LogoBoxWide.vue';
 import InputSmall from '@/components/ui/InputSmall.vue';
 import ButtonSmall from '@/components/ui/ButtonSmall.vue';
 
+// import mixins
+import loginMixin from '@/mixins/AuthMixins/loginMixin';
 export default {
   name: 'LoginPage',
   components: {
@@ -39,43 +41,8 @@ export default {
     InputSmall,
     ButtonSmall,
   },
-  data() {
-    return {
-      inputData: {
-        email: '',
-        password: '',
-      },
-      errorStates: {
-        email: false,
-        password: false,
-      },
-    };
-  },
-  methods: {
-    validation(data) {
-      // email
-      if (data.email.trim() === '') {
-        this.errorStates.email = true;
-        return { error: true, message: 'email is empty' };
-      } else {
-        this.errorStates.email = false;
-      }
-      // password
-      if (data.password.trim() === '') {
-        this.errorStates.password = true;
-        return { error: true, message: 'password is empty' };
-      } else {
-        this.errorStates.password = false;
-      }
-      return { error: false, message: '' };
-    },
-    loginHandler() {
-      const validationResponse = this.validation(this.inputData);
-      console.log(validationResponse);
-      // if validation error show error message
-      // if no validation error send data to server && redirect to home page
-    },
-  },
+
+  mixins: [loginMixin],
 };
 </script>
 
