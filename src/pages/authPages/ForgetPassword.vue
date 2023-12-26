@@ -22,40 +22,42 @@
           <SpinnerSmall />
         </ButtonSmall>
       </form>
-      <form
-        class="auth__form"
-        @submit.prevent="resetPasswordHandler"
-        v-if="selectedForm === 'otp'"
-      >
-        <InlineMessage severity="info">OTP has been sent </InlineMessage>
-        <br />
-        <br />
-        <InputSmall
-          type="text"
-          v-model.trim="inputData.otp"
-          placeholder="otp"
-          :error="errorStates.otp"
-        />
-        <InputSmall
-          type="password"
-          v-model.trim="inputData.password"
-          placeholder="password"
-          :error="errorStates.password"
-        />
-        <InputSmall
-          type="password"
-          v-model.trim="inputData.passwordConfirm"
-          placeholder="confirm password"
-          :error="errorStates.passwordConfirm"
-        />
-        <br />
-        <ButtonSmall type="button" text="submit" v-if="!pendingOtp"
-          >Submit</ButtonSmall
+      <transition name="otp-form" mode="in-out">
+        <form
+          class="auth__form"
+          @submit.prevent="resetPasswordHandler"
+          v-if="selectedForm === 'otp'"
         >
-        <ButtonSmall type="button" text="submit" v-if="pendingOtp">
-          <SpinnerSmall />
-        </ButtonSmall>
-      </form>
+          <InlineMessage severity="info">OTP has been sent </InlineMessage>
+          <br />
+          <br />
+          <InputSmall
+            type="text"
+            v-model.trim="inputData.otp"
+            placeholder="otp"
+            :error="errorStates.otp"
+          />
+          <InputSmall
+            type="password"
+            v-model.trim="inputData.password"
+            placeholder="password"
+            :error="errorStates.password"
+          />
+          <InputSmall
+            type="password"
+            v-model.trim="inputData.passwordConfirm"
+            placeholder="confirm password"
+            :error="errorStates.passwordConfirm"
+          />
+          <br />
+          <ButtonSmall type="button" text="submit" v-if="!pendingOtp"
+            >Submit</ButtonSmall
+          >
+          <ButtonSmall type="button" text="submit" v-if="pendingOtp">
+            <SpinnerSmall />
+          </ButtonSmall>
+        </form>
+      </transition>
     </AuthWrapper>
   </div>
 </template>

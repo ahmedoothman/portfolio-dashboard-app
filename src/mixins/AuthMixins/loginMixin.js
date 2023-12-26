@@ -48,10 +48,6 @@ export default {
       );
 
       if (response.status === 'success') {
-        this.$toast.add({
-          ...this.successToast,
-          detail: 'login successfully',
-        });
         this.$router.push({ name: 'Home' });
       } else {
         this.$toast.add({

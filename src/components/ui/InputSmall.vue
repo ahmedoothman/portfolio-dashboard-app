@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div v-ripple :class="className">
     <input
       :type="type"
       :placeholder="placeholder"
@@ -33,15 +33,15 @@ export default {
   emits: ['update:modelValue'],
   data() {
     return {
-      className: 'normal',
+      className: 'normal p-ripple',
     };
   },
   watch: {
     error(value) {
       if (value) {
-        this.className = 'error';
+        this.className = 'error p-ripple';
       } else {
-        this.className = 'normal';
+        this.className = 'normal p-ripple';
       }
     },
   },

@@ -1,0 +1,99 @@
+@import '@/styles/base.scss';
+.header {
+  background-color: $color-secondary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $color-white;
+  // overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+}
+.part {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 40%;
+  max-width: 50%;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  min-width: 10%;
+  max-width: 15%;
+  margin-left: 30px;
+  img {
+    width: 100%;
+    margin-right: 10px;
+  }
+}
+.nav {
+  margin: 0;
+  padding: 0;
+  ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      height: 100%;
+      a {
+        text-decoration: none;
+        color: $color-white;
+        font-family: $main-font;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: 25px 10px;
+        transition: all 0.3s;
+        cursor: pointer;
+        &:hover {
+          background-color: $color-secondary-light;
+        }
+      }
+
+      .active {
+        background-color: $color-secondary-light;
+      }
+    }
+  }
+}
+.sign-out-tab {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a {
+    text-decoration: none;
+    color: $color-white;
+    font-family: $main-font;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 25px 10px;
+    transition: all 0.3s;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header {
+    .part {
+      min-width: 100%;
+      max-width: 100%;
+    }
+    .nav {
+      li {
+        a {
+          font-size: 1rem;
+        }
+      }
+    }
+    .logo-container {
+      min-width: 25%;
+      max-width: 25%;
+    }
+  }
+}

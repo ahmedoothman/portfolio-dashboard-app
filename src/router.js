@@ -5,6 +5,8 @@ import ForgetPassword from './pages/authPages/ForgetPassword';
 // dashboard pages
 import DashboardBase from './pages/dashboardPages/DashboardBase.vue';
 import DashboardHome from './pages/dashboardPages/DashboardHome.vue';
+import TechnologyPage from './pages/dashboardPages/TechnologyPage.vue';
+import SettingsBase from './pages/dashboardPages/Settings/SettingsBase.vue';
 // not found page
 import NotFound from './pages/NotFound.vue';
 // auth guard
@@ -35,13 +37,21 @@ const router = createRouter({
           component: DashboardHome,
           name: 'Home',
         },
+        {
+          path: 'technology',
+          component: TechnologyPage,
+        },
+        {
+          path: 'settings',
+          component: SettingsBase,
+        },
       ],
       beforeEnter: (_, _2, next) => {
         (async () => {
           if (await isAuthenticatd()) {
             next();
           } else {
-            next({ name: 'login-page' });
+            next({ name: 'Login' });
           }
         })();
       },

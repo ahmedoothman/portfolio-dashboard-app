@@ -42,7 +42,7 @@ export default {
         this.selectedForm = 'otp';
       } else {
         this.$toast.add({
-          ...this.successToast,
+          ...this.errorToast,
           detail: response.message,
         });
       }

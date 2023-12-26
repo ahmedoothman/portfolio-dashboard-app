@@ -1,13 +1,21 @@
 <template>
   <div>
-    <h1>Base</h1>
-    <router-view />
+    <NavBar />
+    <router-view v-slot="slotProps">
+      <transition name="dashboard-router" mode="out-in">
+        <component :is="slotProps.Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
 export default {
   name: 'DashboardBase',
+  components: {
+    NavBar,
+  },
 };
 </script>
 

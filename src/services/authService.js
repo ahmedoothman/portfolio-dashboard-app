@@ -2,8 +2,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { errorReturnHandler } from '@/utils/services';
 import { API_URL } from '@/constants/customConfigs';
-const token = Cookies.get('token');
-console.log(token);
 /*******************************************************************************/
 /*                             login Service                                   */
 /*******************************************************************************/

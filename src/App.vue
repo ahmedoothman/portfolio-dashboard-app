@@ -1,9 +1,13 @@
 <template>
-  <router-view />
+  <router-view v-slot="slotProps">
+    <transition name="main-router" mode="out-in">
+      <component :is="slotProps.Component" />
+    </transition>
+  </router-view>
+
   <Toast position="top-right" group="tr" />
   <Toast position="bottom-center" group="bc" />
 </template>
-
 <script>
 import Toast from 'primevue/toast';
 
