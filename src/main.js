@@ -12,6 +12,8 @@ import Ripple from 'primevue/ripple';
 import 'primevue/resources/themes/lara-light-blue/theme.css';
 // spinner
 import SpinnerSmall from './components/ui/SpinnerSmall.vue';
+import PagesWrapper from './components/wrappers/PagesWrapper.vue';
+import AuthWrapper from './components/wrappers/AuthWrapper.vue';
 const app = createApp(App);
 
 app.use(store);
@@ -22,4 +24,6 @@ app.use(ToastService);
 app.directive('ripple', Ripple);
 // global components
 app.component('SpinnerSmall', SpinnerSmall);
+app.component('PagesWrapper', PagesWrapper);
+app.component('AuthWrapper', AuthWrapper);
 app.mount('#app');

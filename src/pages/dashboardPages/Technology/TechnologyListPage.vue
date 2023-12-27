@@ -1,34 +1,27 @@
 <template>
   <div>
-    <h1>Projects</h1>
+    <h1>TechnologyPage</h1>
     <div class="search-box">
       <InputSmall placeholder="Search" />
     </div>
-    <div class="project-list">
-      <div class="project-list__header">
-        <h3>Project</h3>
+    <div class="technology-list">
+      <div class="technology-list__header">
+        <h3>Technology</h3>
       </div>
-      <ProjectCard />
-      <ProjectCard />
     </div>
   </div>
 </template>
 
 <script>
 import InputSmall from '@/components/ui/InputSmall.vue';
-
 export default {
-  name: 'DashboardHome',
+  name: 'TechnologyListPage',
   components: {
     InputSmall,
   },
-  data() {
-    return {};
-  },
-  methods: {},
 };
 </script>
 
-<style src="./DashboardHome.scss" lang="scss" scoped>
+<style src="./TechnologyListPage.scss" lang="scss" scoped>
 /* Add your component styles here */
 </style>

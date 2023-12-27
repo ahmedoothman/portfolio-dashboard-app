@@ -11,5 +11,21 @@ $color-white: #fff;
 $color-danger: #b21818;
 $color-success: #11b452;
 
+// gradients
+$gradient-primary: linear-gradient(
+  to left,
+  $color-secondary,
+  $color-primary-dark
+);
+$gradient-secondary: linear-gradient(
+  to bottom,
+  $color-primary 0%,
+  $color-white 100%
+);
+$gradient-tert: linear-gradient(
+  to right,
+  $color-secondary,
+  $color-primary-dark
+);
 // FONTS
 $main-font: 'Rubik', sans-serif;

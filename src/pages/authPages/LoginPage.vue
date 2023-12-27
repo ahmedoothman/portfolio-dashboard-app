@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import AuthWrapper from '@/components/wrappers/AuthWrapper.vue';
 import LogoBoxWide from '@/components/LogoBoxWide.vue';
 import InputSmall from '@/components/ui/InputSmall.vue';
 import ButtonSmall from '@/components/ui/ButtonSmall.vue';
@@ -42,7 +41,6 @@ export default {
   name: 'LoginPage',
   components: {
     LogoBoxWide,
-    AuthWrapper,
     InputSmall,
     ButtonSmall,
     SpinnerSmall,

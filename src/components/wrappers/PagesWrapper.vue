@@ -1,0 +1,17 @@
+<template>
+  <div class="pages-wrapper">
+    <div class="pages-wrapper__box">
+      <div class="search-box">
+        <slot name="search-box"></slot>
+      </div>
+      <div class="list">
+        <slot name="list"></slot>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+<style lang="scss" src="./PagesWrapper.scss" scoped></style>

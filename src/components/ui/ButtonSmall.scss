@@ -12,12 +12,14 @@
   border-radius: 10px;
   font-family: $main-font;
   font-weight: 600;
-  background-color: $color-secondary-light;
+  background: $gradient-primary;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.4);
   color: $color-white;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
   // hover
   &:hover {
-    background-color: $color-secondary;
+    background: $gradient-tert;
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.4);
   }
 }

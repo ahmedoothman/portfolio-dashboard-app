@@ -4,8 +4,8 @@ import LoginPage from './pages/authPages/LoginPage.vue';
 import ForgetPassword from './pages/authPages/ForgetPassword';
 // dashboard pages
 import DashboardBase from './pages/dashboardPages/DashboardBase.vue';
-import DashboardHome from './pages/dashboardPages/DashboardHome.vue';
-import TechnologyPage from './pages/dashboardPages/TechnologyPage.vue';
+import ProjectsListPage from './pages/dashboardPages/Projects/ProjectsListPage.vue';
+import TechnologyListPage from './pages/dashboardPages/Technology/TechnologyListPage.vue';
 import SettingsBase from './pages/dashboardPages/Settings/SettingsBase.vue';
 // not found page
 import NotFound from './pages/NotFound.vue';
@@ -20,6 +20,15 @@ const router = createRouter({
       alias: '/login',
       component: LoginPage,
       name: 'Login',
+      beforeEnter: (_, _2, next) => {
+        (async () => {
+          if (await isAuthenticatd()) {
+            next({ name: 'Home' });
+          } else {
+            next();
+          }
+        })();
+      },
     },
     {
       path: '/forget-password',
@@ -34,27 +43,27 @@ const router = createRouter({
       children: [
         {
           path: 'home',
-          component: DashboardHome,
+          component: ProjectsListPage,
           name: 'Home',
         },
         {
           path: 'technology',
-          component: TechnologyPage,
+          component: TechnologyListPage,
         },
         {
           path: 'settings',
           component: SettingsBase,
         },
       ],
-      beforeEnter: (_, _2, next) => {
-        (async () => {
-          if (await isAuthenticatd()) {
-            next();
-          } else {
-            next({ name: 'Login' });
-          }
-        })();
-      },
+      // beforeEnter: (_, _2, next) => {
+      //   (async () => {
+      //     if (await isAuthenticatd()) {
+      //       next();
+      //     } else {
+      //       next({ name: 'Login' });
+      //     }
+      //   })();
+      // },
     },
 
     // not found page

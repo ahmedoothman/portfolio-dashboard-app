@@ -1,6 +1,6 @@
 @import '@/styles/base.scss';
 .header {
-  background-color: $color-secondary;
+  background: $gradient-primary;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,18 +13,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-width: 40%;
-  max-width: 50%;
+  width: 40%;
 }
 .logo-container {
   display: flex;
   align-items: center;
-  min-width: 10%;
-  max-width: 15%;
+  width: 13%;
   margin-left: 30px;
   img {
     width: 100%;
-    margin-right: 10px;
   }
 }
 .nav {
@@ -48,7 +45,7 @@
         font-family: $main-font;
         font-size: 1.2rem;
         font-weight: 500;
-        padding: 25px 10px;
+        padding: 20px 10px;
         transition: all 0.3s;
         cursor: pointer;
         &:hover {
@@ -68,32 +65,63 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(1px);
+  }
   a {
     text-decoration: none;
     color: $color-white;
     font-family: $main-font;
     font-size: 1.2rem;
     font-weight: 500;
-    padding: 25px 10px;
+    padding: 20px 10px;
     transition: all 0.3s;
+  }
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 @media screen and (max-width: 768px) {
   .header {
     .part {
-      min-width: 100%;
-      max-width: 100%;
+      flex-grow: 1;
+    }
+    .logo-container {
+      width: 25%;
+      margin-left: 10px;
     }
     .nav {
-      li {
-        a {
-          font-size: 1rem;
+      ul {
+        li {
+          margin-right: 1px;
+          a {
+            font-size: 0.8rem;
+            padding: 25px 5px;
+          }
         }
       }
     }
-    .logo-container {
-      min-width: 25%;
-      max-width: 25%;
+  }
+  .sign-out-tab {
+    a {
+      font-size: 0.8rem;
+      padding: 25px 5px;
+    }
+  }
+  .icon {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 }

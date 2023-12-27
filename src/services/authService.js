@@ -13,7 +13,7 @@ export const loginService = async (email, password) => {
     });
     // set token in cookies
     Cookies.set('token', response.data.token, {
-      expires: 1, // 1 day
+      expires: 90, // 90 day
     });
     return { status: 'success', data: response.data };
   } catch (error) {

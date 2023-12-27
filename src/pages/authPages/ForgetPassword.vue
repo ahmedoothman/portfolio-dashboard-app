@@ -64,7 +64,7 @@
 
 <script>
 import LogoBoxWide from '@/components/LogoBoxWide.vue';
-import AuthWrapper from '@/components/wrappers/AuthWrapper.vue';
+
 import InputSmall from '@/components/ui/InputSmall.vue';
 import ButtonSmall from '@/components/ui/ButtonSmall.vue';
 // primevue
@@ -75,7 +75,6 @@ export default {
   name: 'ForgetPassword',
   components: {
     LogoBoxWide,
-    AuthWrapper,
     InputSmall,
     ButtonSmall,
     InlineMessage,

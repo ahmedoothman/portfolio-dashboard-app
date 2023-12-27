@@ -1,11 +1,25 @@
 <template>
   <div v-ripple :class="className">
     <input
-      :type="type"
+      :type="customType"
       :placeholder="placeholder"
       :value="modelValue"
       @input="updateValue($event.target.value)"
     />
+    <div
+      class="icon-eye"
+      v-if="type === 'password' && !eyeToggle"
+      @click="showPassword"
+    >
+      <img src="@/assets/icons/eye-outline.svg" alt="eye" />
+    </div>
+    <div
+      class="icon-eye"
+      v-if="type === 'password' && eyeToggle"
+      @click="hidePasword"
+    >
+      <img src="@/assets/icons/eye-bold.svg" alt="eye" />
+    </div>
   </div>
 </template>
 
@@ -34,6 +48,8 @@ export default {
   data() {
     return {
       className: 'normal p-ripple',
+      eyeToggle: false,
+      customType: 'password',
     };
   },
   watch: {
@@ -49,6 +65,17 @@ export default {
     updateValue(value) {
       this.$emit('update:modelValue', value);
     },
+    showPassword() {
+      this.eyeToggle = true;
+      this.customType = 'text';
+    },
+    hidePasword() {
+      this.eyeToggle = false;
+      this.customType = 'password';
+    },
+  },
+  beforeMount() {
+    this.customType = this.type;
   },
 };
 </script>

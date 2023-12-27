@@ -1,7 +1,0 @@
-@import '@/styles/base.scss';
-h1 {
-  color: red;
-  //   alernate between 2 states
-  animation: floating 2s ease-in-out infinite alternate;
-  // animation: name duration timing-function delay iteration-count direction fill-mode;
-}

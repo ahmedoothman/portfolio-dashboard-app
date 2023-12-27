@@ -24,6 +24,9 @@
         </ul>
       </nav>
       <li v-ripple class="p-ripple sign-out-tab">
+        <div class="icon">
+          <img src="@/assets/icons/sign-out.svg" alt="user" />
+        </div>
         <a @click="signOutHandler">Sign Out</a>
       </li>
     </div>
