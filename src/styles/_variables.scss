@@ -27,5 +27,14 @@ $gradient-tert: linear-gradient(
   $color-secondary,
   $color-primary-dark
 );
+$gradient-danger: linear-gradient(to left, $color-danger, $color-primary-dark);
+$gradient-danger-hover: linear-gradient(
+  to right,
+  $color-danger,
+  $color-primary-dark
+);
 // FONTS
 $main-font: 'Rubik', sans-serif;
+
+// shadows
+$box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.4); //

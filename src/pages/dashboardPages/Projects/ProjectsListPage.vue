@@ -12,41 +12,96 @@
         v-model="activeTab"
       />
     </template>
-
     <template #list>
-      <div class="project-list__header">
-        <h3>Project</h3>
+      <div class="project-list-header">
+        <h3 @click="test = !test">Project</h3>
       </div>
-      <div class="item"></div>
+      <transition-group
+        name="list"
+        tag="div"
+        class="project-list-content"
+        v-if="!isLoading && projects.length > 0"
+      >
+        <ProjectsItemCard
+          v-for="item in projects"
+          :key="item._id"
+          :data="item"
+          :loading="deleteLoading"
+          @edit-project="editProjectHandler"
+          @delete-project="deleteProjectHandler"
+        />
+      </transition-group>
+      <div class="empty">
+        <h3 v-if="!isLoading && projects.length === 0">No projects found</h3>
+        <h3 v-if="error">{{ error }}</h3>
+        <div v-if="isLoading">loading...</div>
+      </div>
     </template>
   </PagesWrapper>
 </template>
 
 <script>
+import { ref, watch, onMounted } from 'vue';
+import useProjectApi from '@/hooks/projectApiHook';
 import InputSearch from '@/components/ui/InputSearch.vue';
 import SearchTabs from '@/components/ui/SearchTabs.vue';
+import ProjectsItemCard from './ProjectsItemCard.vue';
+
 export default {
   name: 'ProjectsListPage',
 
   components: {
     InputSearch,
     SearchTabs,
+    ProjectsItemCard,
   },
-  data() {
-    return {
-      searchValue: '',
-      activeTab: 'overall',
+  // inject the data from the app component
+
+  setup() {
+    const searchValue = ref('');
+    const activeTab = ref('overall');
+    const test = ref(false);
+    const {
+      projects,
+      error,
+      isLoading,
+      deleteLoading,
+      getProjectsData,
+      deleteProject,
+    } = useProjectApi();
+    const searchHandler = (value) => {
+      searchValue.value = value;
     };
-  },
-  watch: {
-    searchValue(value) {
+
+    watch(searchValue, (value) => {
       console.log(value);
-    },
-  },
-  methods: {
-    searchHandler() {
-      console.log('search');
-    },
+    });
+    watch(activeTab, (value) => {
+      console.log(value);
+    });
+    // methods
+    const editProjectHandler = (id) => {
+      console.log(id);
+    };
+    const deleteProjectHandler = (id) => {
+      deleteProject(id);
+    };
+    onMounted(() => {
+      getProjectsData();
+    });
+
+    return {
+      searchValue,
+      activeTab,
+      projects,
+      error,
+      isLoading,
+      deleteLoading,
+      searchHandler,
+      editProjectHandler,
+      deleteProjectHandler,
+      test,
+    };
   },
 };
 </script>

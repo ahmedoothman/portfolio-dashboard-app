@@ -48,7 +48,7 @@ export default {
       );
 
       if (response.status === 'success') {
-        this.$router.push({ name: 'Home' });
+        this.$router.push({ name: 'projects' });
       } else {
         this.$toast.add({
           ...this.errorToast,

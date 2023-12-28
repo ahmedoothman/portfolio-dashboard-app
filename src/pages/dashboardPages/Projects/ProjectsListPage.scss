@@ -1,1 +1,46 @@
 @import '@/styles/base.scss';
+.project-list-content {
+  // grid 3 in row dynamically
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  .project-item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+  }
+  .project-image {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
+.list-move {
+  transition: transform 0.8s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.list-enter-active {
+  transition: all 0.4s ease-out;
+}
+.list-leave-active {
+  transition: all 0.4s ease-in;
+  position: absolute;
+}
+.list-enter-to,
+.list-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -7,7 +7,7 @@
       <nav class="nav">
         <ul>
           <li>
-            <router-link v-ripple class="p-ripple" to="/dashboard/home"
+            <router-link v-ripple class="p-ripple" to="/dashboard/projects"
               >Projects</router-link
             >
           </li>

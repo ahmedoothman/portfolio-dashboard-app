@@ -23,7 +23,7 @@ const router = createRouter({
       beforeEnter: (_, _2, next) => {
         (async () => {
           if (await isAuthenticatd()) {
-            next({ name: 'Home' });
+            next({ name: 'projects' });
           } else {
             next();
           }
@@ -42,9 +42,9 @@ const router = createRouter({
       name: 'dashboard-base',
       children: [
         {
-          path: 'home',
+          path: 'projects',
           component: ProjectsListPage,
-          name: 'Home',
+          name: 'projects',
         },
         {
           path: 'technology',
@@ -55,15 +55,15 @@ const router = createRouter({
           component: SettingsBase,
         },
       ],
-      // beforeEnter: (_, _2, next) => {
-      //   (async () => {
-      //     if (await isAuthenticatd()) {
-      //       next();
-      //     } else {
-      //       next({ name: 'Login' });
-      //     }
-      //   })();
-      // },
+      beforeEnter: (_, _2, next) => {
+        (async () => {
+          if (await isAuthenticatd()) {
+            next();
+          } else {
+            next({ name: 'Login' });
+          }
+        })();
+      },
     },
 
     // not found page
