@@ -1,6 +1,5 @@
 @import '@/styles/base.scss';
 .project-list-content {
-  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
@@ -10,11 +9,52 @@
   justify-content: center;
   align-items: center;
 }
+.title {
+  font-size: 22px;
+  span {
+    font-size: 14px;
+    color: $color-secondary;
+    opacity: 0.8;
+    font-style: italic;
+    &::after,
+    &::before {
+      content: '"';
+      display: inline-block;
+      border-radius: 50%;
+      margin: 0 5px;
+    }
+  }
+}
 
+.empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+.project-list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    width: 15px;
+    margin-right: 5px;
+  }
+}
+// animation
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: scale(0.5);
+  transform: scale(0.5) translateX(-500px);
 }
 
 .list-enter-active {

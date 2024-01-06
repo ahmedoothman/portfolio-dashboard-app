@@ -14,7 +14,15 @@
     </template>
     <template #list>
       <div class="project-list-header">
-        <h3 @click="test = !test">Project</h3>
+        <h3 @click="test = !test" class="title">
+          Projects <span>{{ projects.length }}</span>
+        </h3>
+        <div class="btns">
+          <ButtonSmall type="button" @btn-clicked="navigateAddNew">
+            <img src="@/assets/icons/add-circle.svg" alt="external link" />
+            Add New
+          </ButtonSmall>
+        </div>
       </div>
       <transition-group
         name="list"
@@ -34,7 +42,7 @@
       <div class="empty">
         <h3 v-if="!isLoading && projects.length === 0">No projects found</h3>
         <h3 v-if="error">{{ error }}</h3>
-        <div v-if="isLoading">loading...</div>
+        <div v-if="isLoading"><SpinnerBig /></div>
       </div>
     </template>
   </PagesWrapper>
@@ -42,6 +50,7 @@
 
 <script>
 import { ref, watch, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import useProjectApi from '@/hooks/projectApiHook';
 import InputSearch from '@/components/ui/InputSearch.vue';
 import SearchTabs from '@/components/ui/SearchTabs.vue';
@@ -58,6 +67,7 @@ export default {
   // inject the data from the app component
 
   setup() {
+    const router = useRouter();
     const searchValue = ref('');
     const activeTab = ref('overall');
     const test = ref(false);
@@ -80,6 +90,10 @@ export default {
       console.log(value);
     });
     // methods
+    const navigateAddNew = () => {
+      // navigate to add new page
+      router.push({ name: 'AddNewProject' });
+    };
     const editProjectHandler = (id) => {
       console.log(id);
     };
@@ -97,6 +111,7 @@ export default {
       error,
       isLoading,
       deleteLoading,
+      navigateAddNew,
       searchHandler,
       editProjectHandler,
       deleteProjectHandler,

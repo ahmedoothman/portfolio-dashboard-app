@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>SettingsBase</h1>
+    <SpinnerBig />
   </div>
 </template>
 
