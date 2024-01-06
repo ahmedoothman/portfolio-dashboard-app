@@ -103,19 +103,3 @@
     margin-right: 0px;
   }
 }
-// animation
-.card-enter-from,
-.card-leave-to {
-  transform: rotate(-90deg);
-}
-
-.card-enter-active {
-  transition: all 1s ease-out;
-}
-.card-leave-active {
-  transition: all 1s ease-in;
-}
-.card-enter-to,
-.card-leave-from {
-  transform: rotate(90deg);
-}
