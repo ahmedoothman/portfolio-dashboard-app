@@ -63,6 +63,38 @@
               v-model="project.description"
             ></textarea>
           </div>
+          <div class="form-group-file">
+            <input
+              type="file"
+              id="images"
+              name="images"
+              accept=".png,.jpg,.jpeg"
+              @input="imagesInputHandler"
+              multiple
+            />
+            <div class="header-images">
+              <label for="images">Choose Images</label>
+              <p v-if="images.length === 0">no images selected</p>
+              <p v-else>Selected : {{ images.length }} images</p>
+            </div>
+
+            <div class="customInputFile">
+              <div class="images-list">
+                <div
+                  v-for="item in imagesPreview"
+                  :key="item.name"
+                  class="image-item"
+                  :class="{ active: mainImage === item.name }"
+                  @click="chooseMainImage(item.name)"
+                >
+                  <img :src="item.image" alt="image" />
+                </div>
+              </div>
+            </div>
+            <p class="note" v-if="images.length !== 0">
+              Note : Select the main image by clicking on it
+            </p>
+          </div>
         </div>
       </div>
       <ButtonSmall type="button"> {{ formType }} PROJECT </ButtonSmall>
@@ -84,6 +116,9 @@ export default {
       { _id: '657ee568bb07b225c84afa46', name: 'react js' },
       { _id: '657ee571bb07b225c84afa49', name: 'vue js' },
     ]);
+    const images = ref([]);
+    const imagesPreview = ref([]);
+    const mainImage = ref('');
     const project = ref({
       name: '',
       type: 'web',
@@ -118,7 +153,27 @@ export default {
       project.value.tags = value.split(',');
       console.log(project.value.tags);
     });
+    // methods
+    const imagesInputHandler = (e) => {
+      const files = e.target.files;
+      for (let i = 0; i < files.length; i++) {
+        images.value.push(files[i]);
+        const reader = new FileReader();
+        // same process but add field for name and image in the imagesPreview array
+        reader.onload = (e) => {
+          imagesPreview.value.push({
+            image: e.target.result,
+            name: files[i].name,
+          });
+        };
+        reader.readAsDataURL(files[i]);
+      }
+      console.log(imagesPreview.value);
+    };
 
+    const chooseMainImage = (name) => {
+      mainImage.value = name;
+    };
     onMounted(() => {
       //   if there is an id in the params then we are in edit mode
       if (router.currentRoute.value.params.id) {
@@ -136,6 +191,11 @@ export default {
       tagsTemp,
       formName,
       formType,
+      images,
+      imagesPreview,
+      mainImage,
+      imagesInputHandler,
+      chooseMainImage,
       techName,
       addProject,
       removeTech,
