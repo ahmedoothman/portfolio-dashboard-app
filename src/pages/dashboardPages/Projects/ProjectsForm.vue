@@ -4,7 +4,7 @@
       <h1>{{ formName }}</h1>
     </div>
     <br />
-    <form>
+    <form @submit.prevent="addProjectLocal">
       <div class="inputs">
         <div class="part">
           <div class="form-group">
@@ -97,7 +97,12 @@
           </div>
         </div>
       </div>
-      <ButtonSmall type="button"> {{ formType }} PROJECT </ButtonSmall>
+      <ButtonSmall type="button" v-if="!isLoading">
+        {{ formType }} PROJECT
+      </ButtonSmall>
+      <ButtonSmall type="button" v-else>
+        <SpinnerSmall />
+      </ButtonSmall>
     </form>
   </div>
 </template>
@@ -105,6 +110,8 @@
 <script>
 import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import useProjectApi from '@/hooks/projectApiHook';
+// formData
 export default {
   name: 'ProjectsForm',
   setup() {
@@ -116,21 +123,40 @@ export default {
       { _id: '657ee568bb07b225c84afa46', name: 'react js' },
       { _id: '657ee571bb07b225c84afa49', name: 'vue js' },
     ]);
-    const images = ref([]);
+    const images = ref([]); // array of images will be uploaded
     const imagesPreview = ref([]);
-    const mainImage = ref('');
+    const mainImage = ref(''); // the main image
+    const { isLoading, addProject } = useProjectApi();
+    // data
     const project = ref({
       name: '',
       type: 'web',
-      tags: '',
+      tags: [],
       technologies: [],
       link: '',
       description: '',
     });
     const tech = ref('');
     const tagsTemp = ref('');
-    const addProject = () => {
-      console.log(project.value);
+
+    const formData = new FormData();
+    // methods
+    const addProjectLocal = async () => {
+      // add the project data to the formData
+      formData.append('name', project.value.name);
+      formData.append('type', project.value.type);
+
+      formData.append('tags', JSON.stringify(project.value.tags));
+      formData.append('techs', JSON.stringify(project.value.technologies));
+      formData.append('link', project.value.link);
+      formData.append('description', project.value.description);
+      formData.append('mainImage', mainImage.value);
+      images.value.forEach((item) => {
+        formData.append('images', item);
+      });
+      await addProject(formData);
+      // navigate to projects
+      router.push({ name: 'projects' });
     };
 
     const techName = (id) => {
@@ -150,8 +176,14 @@ export default {
       }
     });
     watch(tagsTemp, (value) => {
-      project.value.tags = value.split(',');
-      console.log(project.value.tags);
+      // check if there is only one tag by check if the value has no , in it
+      if (value.indexOf(',') === -1) {
+        project.value.tags.push(value);
+
+        return;
+      } else if (value) {
+        project.value.tags = value.split(',');
+      }
     });
     // methods
     const imagesInputHandler = (e) => {
@@ -168,7 +200,6 @@ export default {
         };
         reader.readAsDataURL(files[i]);
       }
-      console.log(imagesPreview.value);
     };
 
     const chooseMainImage = (name) => {
@@ -197,8 +228,9 @@ export default {
       imagesInputHandler,
       chooseMainImage,
       techName,
-      addProject,
+      addProjectLocal,
       removeTech,
+      isLoading,
     };
   },
 };
