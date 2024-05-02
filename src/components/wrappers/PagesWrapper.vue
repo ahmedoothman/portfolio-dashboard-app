@@ -6,6 +6,9 @@
     <div class="list">
       <slot name="list"></slot>
     </div>
+    <div class="content">
+      <slot name="content"></slot>
+    </div>
   </div>
 </template>
 

@@ -1,23 +1,39 @@
 <template>
-  <div>
-    <h1>TechnologyPage</h1>
-    <div class="search-box">
-      <InputSmall placeholder="Search" />
-    </div>
-    <div class="technology-list">
-      <div class="technology-list__header">
-        <h3>Technology</h3>
+  <PagesWrapper>
+    <template #search-box>
+      <div class="search-box">
+        <InputSmall placeholder="Search" />
       </div>
-    </div>
-  </div>
+    </template>
+    <template #content>
+      <div class="main-content">
+        <div class="input-title">
+          <h3>Technologies</h3>
+          <p>when multiple separate wit ( , )</p>
+        </div>
+        <div class="input-fields">
+          <input type="text" />
+          <ButtonSmall type="button" @btn-clicked="navigateAddNew">
+            <img src="@/assets/icons/add-circle.svg" alt="external link" />
+            Add
+          </ButtonSmall>
+        </div>
+        <div class="tech-list">
+          <TechItemBlock v-for="index in 20" :key="index" name="Node JS" />
+        </div>
+      </div>
+    </template>
+  </PagesWrapper>
 </template>
 
 <script>
 import InputSmall from '@/components/ui/InputSmall.vue';
+import TechItemBlock from './TechItemBlock.vue';
 export default {
   name: 'TechnologyListPage',
   components: {
     InputSmall,
+    TechItemBlock,
   },
 };
 </script>

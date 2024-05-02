@@ -1,0 +1,23 @@
+@import '@/styles/base.scss';
+.tech-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  min-width: 80px;
+  margin: 5px;
+  width: fit-content;
+  background-color: $color-primary-dark;
+
+  border-radius: 10px;
+  p {
+    color: $color-white;
+  }
+  img {
+    margin-left: 10px;
+    width: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
