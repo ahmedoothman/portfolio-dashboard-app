@@ -7,7 +7,7 @@ import {
   getProjectService,
   updateProjectService,
 } from '@/services/projectService';
-export default function useProjectApi() {
+export default function useProjectAPI() {
   const projects = ref([]);
   const isLoading = ref(false);
   const deleteLoading = ref(false);

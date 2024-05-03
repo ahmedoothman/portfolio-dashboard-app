@@ -1,16 +1,29 @@
 <template>
   <div class="tech-block">
-    <p>{{ name }}</p>
-    <img src="@/assets/icons/close-white.svg" alt="" />
+    <p v-if="data._id === deletePending.id && deletePending.loading">...</p>
+    <p v-else>{{ data.name }}</p>
+    <img
+      src="@/assets/icons/close-white.svg"
+      alt=""
+      @click="deleteTechHandler"
+    />
   </div>
 </template>
 <script>
 export default {
   name: 'TechItemBlock',
   props: {
-    name: {
-      type: String,
+    data: {
+      type: Object,
       required: true,
+    },
+    deletePending: {
+      type: Object,
+    },
+  },
+  methods: {
+    deleteTechHandler() {
+      this.$emit('delete-tech', this.data._id);
     },
   },
 };

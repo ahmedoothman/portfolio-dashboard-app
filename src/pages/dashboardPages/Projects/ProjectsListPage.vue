@@ -51,7 +51,7 @@
 <script>
 import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import useProjectApi from '@/hooks/projectApiHook';
+import useProjectAPI from '@/hooks/projectAPIHook';
 import InputSearch from '@/components/ui/InputSearch.vue';
 import SearchTabs from '@/components/ui/SearchTabs.vue';
 import ProjectsItemCard from './ProjectsItemCard.vue';
@@ -78,7 +78,7 @@ export default {
       deleteLoading,
       getProjectsData,
       deleteProject,
-    } = useProjectApi();
+    } = useProjectAPI();
     const searchHandler = (value) => {
       searchValue.value = value;
     };
@@ -124,3 +124,4 @@ export default {
 <style src="./ProjectsListPage.scss" lang="scss" scoped>
 /* Add your component styles here */
 </style>
+@/hooks/projectAPIHook

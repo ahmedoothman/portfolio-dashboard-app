@@ -110,7 +110,7 @@
 <script>
 import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import useProjectApi from '@/hooks/projectApiHook';
+import useProjectAPI from '@/hooks/projectAPIHook';
 // formData
 export default {
   name: 'ProjectsForm',
@@ -126,7 +126,7 @@ export default {
     const images = ref([]); // array of images will be uploaded
     const imagesPreview = ref([]);
     const mainImage = ref(''); // the main image
-    const { isLoading, addProject } = useProjectApi();
+    const { isLoading, addProject } = useProjectAPI();
     // data
     const project = ref({
       name: '',
@@ -237,3 +237,4 @@ export default {
 </script>
 
 <style lang="scss" src="./ProjectsForm.scss" scoped></style>
+@/hooks/projectAPIHook
