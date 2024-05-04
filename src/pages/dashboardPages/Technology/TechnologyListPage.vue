@@ -24,7 +24,8 @@
             </ButtonSmall>
           </div>
         </form>
-        <div class="tech-list">
+
+        <transition-group name="list" tag="div" class="tech-list">
           <TechItemBlock
             v-for="tech in technologies"
             :key="tech._id"
@@ -34,7 +35,7 @@
           />
           <NoContentFound v-if="!isLoading && technologies.length === 0" />
           <SpinnerBig v-if="isLoading" />
-        </div>
+        </transition-group>
       </div>
     </template>
   </PagesWrapper>

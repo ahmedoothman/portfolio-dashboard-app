@@ -55,3 +55,26 @@ form {
   align-items: center;
   flex-wrap: wrap;
 }
+// animation
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.list-enter-active {
+  transition: all 0.4s ease-out;
+}
+.list-leave-active {
+  transition: all 0.4s ease-in;
+  position: absolute;
+}
+.list-enter-to,
+.list-leave-from {
+  opacity: 1;
+  transform: translateY(0px);
+}
+// for the removal of elements from the list
+.list-move {
+  transition: transform 0.8s ease;
+}
