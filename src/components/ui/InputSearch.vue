@@ -15,7 +15,7 @@
         :placeholder="placeholder"
         :value="modelValue"
         @input="updateValue($event.target.value)"
-        @keyup.enter="searchHandler"
+        @keyup="searchHandler"
       />
       <div
         class="icon-search"
@@ -54,6 +54,7 @@ export default {
     return {
       className: 'normal p-ripple',
       placeholder: 'Search...',
+      setTimeoutId: null,
     };
   },
   watch: {
@@ -70,10 +71,15 @@ export default {
       this.$emit('update:modelValue', value);
     },
     searchHandler() {
-      this.$emit('search');
+      // emits after 500ms
+      clearTimeout(this.setTimeoutId);
+      this.setTimeoutId = setTimeout(() => {
+        this.$emit('search', this.modelValue);
+      }, 500);
     },
     clearSearch() {
       this.$emit('update:modelValue', '');
+      this.$emit('search', '');
     },
   },
 };

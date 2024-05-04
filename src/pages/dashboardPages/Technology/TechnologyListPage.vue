@@ -2,8 +2,9 @@
   <PagesWrapper>
     <template #search-box>
       <div class="search-box">
-        <InputSmall
+        <InputSearch
           placeholder="Search"
+          :examples="['names']"
           @search="searchHandler"
           v-model.trim="searchValue"
         />
@@ -42,16 +43,16 @@
 </template>
 
 <script>
-import InputSmall from '@/components/ui/InputSmall.vue';
 import TechItemBlock from './TechItemBlock.vue';
 import useTechAPI from '@/hooks/techAPIHook';
 
 import { ref, onMounted } from 'vue';
+import InputSearch from '@/components/ui/InputSearch.vue';
 export default {
   name: 'TechnologyListPage',
   components: {
-    InputSmall,
     TechItemBlock,
+    InputSearch,
   },
   setup() {
     // data

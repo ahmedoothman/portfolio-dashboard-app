@@ -44,12 +44,11 @@ export default {
       default: false,
     },
   },
-  emits: ['update:modelValue', 'search'],
+  emits: ['update:modelValue'],
   data() {
     return {
       className: 'normal p-ripple',
       eyeToggle: false,
-      searchTimeout: null,
       customType: 'password',
     };
   },
@@ -64,15 +63,7 @@ export default {
   },
   methods: {
     updateValue(value) {
-      clearTimeout(this.searchTimeout);
-      this.searchTimeout = setTimeout(() => {
-        this.search();
-      }, 500);
-
       this.$emit('update:modelValue', value);
-    },
-    search() {
-      this.$emit('search', this.modelValue);
     },
     showPassword() {
       this.eyeToggle = true;

@@ -1,4 +1,4 @@
-import { ref, inject } from 'vue';
+import { ref, inject, reactive } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import {
   getProjectsService,
@@ -10,7 +10,10 @@ import {
 export default function useProjectAPI() {
   const projects = ref([]);
   const isLoading = ref(false);
-  const deleteLoading = ref(false);
+  const deleteLoading = reactive({
+    id: '',
+    loading: false,
+  });
   const error = ref(null);
   const totalProjects = ref(0);
   const toast = useToast();
@@ -53,6 +56,7 @@ export default function useProjectAPI() {
   };
   //   delete project
   const deleteProject = async (id) => {
+    deleteLoading.id = id;
     deleteLoading.value = true;
     const response = await deleteProjectService(id);
     if (response.status === 'success') {

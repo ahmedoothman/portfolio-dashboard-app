@@ -1,6 +1,8 @@
 <template>
   <div class="project-item-card">
-    <div class="overlay" v-if="loading"><SpinnerSmall /></div>
+    <div class="overlay" v-if="data._id === loading.id && loading.value">
+      <SpinnerSmall />
+    </div>
     <div class="project-image" @click="projectDetailsHandler">
       <img :src="data.mainImage" alt="project image" />
       <div class="overlay-view">
@@ -43,8 +45,8 @@ export default {
       required: true,
     },
     loading: {
-      type: Boolean,
-      default: false,
+      type: Object,
+      required: false,
     },
   },
   components: {

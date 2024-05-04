@@ -111,6 +111,7 @@
 import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import useProjectAPI from '@/hooks/projectAPIHook';
+import useTechAPI from '@/hooks/techAPIHook';
 // formData
 export default {
   name: 'ProjectsForm',
@@ -118,15 +119,11 @@ export default {
     const router = useRouter();
     const formName = ref('ADD NEW PROJECT');
     const formType = ref('ADD');
-    const technologies = ref([
-      { _id: '657ee564bb07b225c84afa43', name: 'node js' },
-      { _id: '657ee568bb07b225c84afa46', name: 'react js' },
-      { _id: '657ee571bb07b225c84afa49', name: 'vue js' },
-    ]);
     const images = ref([]); // array of images will be uploaded
     const imagesPreview = ref([]);
     const mainImage = ref(''); // the main image
     const { isLoading, addProject } = useProjectAPI();
+    const { technologies, getTechnologiesData } = useTechAPI();
     // data
     const project = ref({
       name: '',
@@ -205,7 +202,9 @@ export default {
     const chooseMainImage = (name) => {
       mainImage.value = name;
     };
-    onMounted(() => {
+    onMounted(async () => {
+      // get the technologies
+      await getTechnologiesData();
       //   if there is an id in the params then we are in edit mode
       if (router.currentRoute.value.params.id) {
         formName.value = 'EDIT PROJECT';

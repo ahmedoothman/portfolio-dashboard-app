@@ -1,80 +1,9 @@
 @import '@/styles/base.scss';
-.spinner-big {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  height: 150px;
-  margin: 60px auto;
-}
-.logo {
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  animation-name: fade-logo;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-.spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container {
   width: 100%;
   height: 100%;
-  margin-top: 20px;
-  .spinner__item {
-    width: 20px;
-    height: 20px;
-    background-color: $color-secondary;
-    border-radius: 50%;
-    margin: 0 5px;
-    animation-name: spinner;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    &:nth-child(1) {
-      animation-delay: 0s;
-    }
-    &:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-    &:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-    &:nth-child(4) {
-      animation-delay: 0.9s;
-    }
-  }
-}
-
-@keyframes spinner {
-  0% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-}
-
-@keyframes fade-logo {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0.6;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
 }

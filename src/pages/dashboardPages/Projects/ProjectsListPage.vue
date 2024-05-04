@@ -40,7 +40,8 @@
         />
       </transition-group>
       <div class="empty">
-        <h3 v-if="!isLoading && projects.length === 0">No projects found</h3>
+        <NoContentFound v-if="!isLoading && projects.length === 0">
+        </NoContentFound>
         <h3 v-if="error">{{ error }}</h3>
         <div v-if="isLoading"><SpinnerBig /></div>
       </div>
@@ -79,15 +80,24 @@ export default {
       getProjectsData,
       deleteProject,
     } = useProjectAPI();
-    const searchHandler = (value) => {
-      searchValue.value = value;
+    const searchHandler = async (value) => {
+      // if there is a value filter projects
+      if (value && value.length > 0) {
+        projects.value = projects.value.filter((project) => {
+          return project.name.toLowerCase().includes(value.toLowerCase());
+        });
+      } else {
+        await getProjectsData();
+      }
     };
 
-    watch(searchValue, (value) => {
-      console.log(value);
-    });
-    watch(activeTab, (value) => {
-      console.log(value);
+    watch(activeTab, async (value) => {
+      await getProjectsData();
+      if (value === 'overall') return;
+      // filter the projects based on the active tab
+      projects.value = projects.value.filter((project) => {
+        return project.type === value;
+      });
     });
     // methods
     const navigateAddNew = () => {

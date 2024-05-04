@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner-big">
+  <div class="container">
     <!-- no content found message -->
     <p>No Content Found</p>
   </div>
