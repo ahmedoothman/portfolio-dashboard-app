@@ -105,7 +105,8 @@ export default {
       router.push({ name: 'AddNewProject' });
     };
     const editProjectHandler = (id) => {
-      console.log(id);
+      //pass the id to the edit page
+      router.push({ name: 'editProject', params: { id } });
     };
     const deleteProjectHandler = (id) => {
       deleteProject(id);

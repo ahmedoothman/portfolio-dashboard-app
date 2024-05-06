@@ -56,6 +56,7 @@ const router = createRouter({
           path: 'edit-project/:id',
           component: ProjectsForm,
           name: 'editProject',
+          props: true,
         },
         {
           path: 'technology',

@@ -81,6 +81,7 @@ export default function useProjectAPI() {
     isLoading.value = true;
     const response = await getProjectService(id);
     if (response.status === 'success') {
+      isLoading.value = false;
       return response.data;
     } else {
       error.value = response.error;

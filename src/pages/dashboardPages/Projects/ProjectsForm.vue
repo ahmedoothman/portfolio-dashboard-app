@@ -4,7 +4,7 @@
       <h1>{{ formName }}</h1>
     </div>
     <br />
-    <form @submit.prevent="addProjectLocal">
+    <form @submit.prevent="projectHandler">
       <div class="inputs">
         <div class="part">
           <div class="form-group">
@@ -72,6 +72,9 @@
               @input="imagesInputHandler"
               multiple
             />
+            <p class="note" v-if="formType !== 'ADD'">
+              Note : on Edit , Images Not Handled yet
+            </p>
             <div class="header-images">
               <label for="images">Choose Images</label>
               <p v-if="images.length === 0">no images selected</p>
@@ -115,14 +118,16 @@ import useTechAPI from '@/hooks/techAPIHook';
 // formData
 export default {
   name: 'ProjectsForm',
-  setup() {
+  props: ['id'],
+  setup(props) {
     const router = useRouter();
     const formName = ref('ADD NEW PROJECT');
     const formType = ref('ADD');
     const images = ref([]); // array of images will be uploaded
     const imagesPreview = ref([]);
     const mainImage = ref(''); // the main image
-    const { isLoading, addProject } = useProjectAPI();
+    const { isLoading, addProject, getProject, updateProject } =
+      useProjectAPI();
     const { technologies, getTechnologiesData } = useTechAPI();
     // data
     const project = ref({
@@ -138,7 +143,16 @@ export default {
 
     const formData = new FormData();
     // methods
-    const addProjectLocal = async () => {
+    const projectHandler = async () => {
+      if (formType.value === 'ADD') {
+        await addProjectHanlder();
+      } else {
+        await updateProjectHandler();
+      }
+      // navigate to projects
+      router.push({ name: 'projects' });
+    };
+    const addProjectHanlder = async () => {
       // add the project data to the formData
       formData.append('name', project.value.name);
       formData.append('type', project.value.type);
@@ -152,6 +166,17 @@ export default {
         formData.append('images', item);
       });
       await addProject(formData);
+    };
+    const updateProjectHandler = async () => {
+      // add the project data to the formData
+      formData.append('name', project.value.name);
+      formData.append('type', project.value.type);
+      formData.append('tags', JSON.stringify(project.value.tags));
+      formData.append('techs', JSON.stringify(project.value.technologies));
+      formData.append('link', project.value.link);
+      formData.append('description', project.value.description);
+      // imgs and main image | TO DO
+      await updateProject(props.id, formData);
       // navigate to projects
       router.push({ name: 'projects' });
     };
@@ -165,6 +190,8 @@ export default {
       const index = project.value.technologies.findIndex((item) => item === id);
       project.value.technologies.splice(index, 1);
     };
+
+    //
     // watch
     watch(tech, (value) => {
       // check if value is not already in the array
@@ -206,9 +233,31 @@ export default {
       // get the technologies
       await getTechnologiesData();
       //   if there is an id in the params then we are in edit mode
-      if (router.currentRoute.value.params.id) {
+      if (props.id) {
         formName.value = 'EDIT PROJECT';
         formType.value = 'EDIT';
+        // get the project data
+        const data = await getProject(props.id);
+        console.log(data);
+        project.value = {
+          name: data.name,
+          type: data.type,
+          tags: data.tags,
+          technologies: data.techs.map((item) => item._id),
+          link: data.link,
+          description: data.description,
+        };
+        // set the tags to the tagsTemp
+        tagsTemp.value = data.tags.join(',');
+
+        // i have the links of the images in the data
+        // i will create a preview for them
+        data.images.forEach((item) => {
+          imagesPreview.value.push({
+            image: item,
+            name: item,
+          });
+        });
       } else {
         formName.value = 'ADD NEW PROJECT';
         formType.value = 'ADD';
@@ -227,7 +276,8 @@ export default {
       imagesInputHandler,
       chooseMainImage,
       techName,
-      addProjectLocal,
+      projectHandler,
+      updateProjectHandler,
       removeTech,
       isLoading,
     };
