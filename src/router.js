@@ -8,6 +8,9 @@ import ProjectsListPage from './pages/dashboardPages/Projects/ProjectsListPage.v
 import ProjectsForm from './pages/dashboardPages/Projects/ProjectsForm.vue';
 import TechnologyListPage from './pages/dashboardPages/Technology/TechnologyListPage.vue';
 import SettingsBase from './pages/dashboardPages/Settings/SettingsBase.vue';
+import ProfileSettingsPage from './pages/dashboardPages/Settings/ProfileSettingsPage.vue';
+import SmSettingsPage from './pages/dashboardPages/Settings/SmSettingsPage.vue';
+import PasswordSettingsPage from './pages/dashboardPages/Settings/PasswordSettingsPage.vue';
 // not found page
 import NotFound from './pages/NotFound.vue';
 // auth guard
@@ -65,6 +68,23 @@ const router = createRouter({
         {
           path: 'settings',
           component: SettingsBase,
+          children: [
+            {
+              path: 'profile',
+              component: ProfileSettingsPage,
+              name: 'profile',
+            },
+            {
+              path: 'social-media',
+              component: SmSettingsPage,
+              name: 'social-media',
+            },
+            {
+              path: 'change-password',
+              component: PasswordSettingsPage,
+              name: 'change-password',
+            },
+          ],
         },
       ],
       beforeEnter: (_, _2, next) => {

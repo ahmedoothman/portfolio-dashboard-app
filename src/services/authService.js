@@ -51,3 +51,56 @@ export const resetPasswordService = async (otp, password, passwordConfirm) => {
     return errorReturnHandler(error);
   }
 };
+
+/*******************************************************************************/
+/*                        update me service                                     */
+/*******************************************************************************/
+export const updateMeService = async (data) => {
+  try {
+    const token = Cookies.get('token');
+    const response = await axios.patch(`${API_URL}/users/updateMe`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return { status: 'success', data: response.data.data };
+  } catch (error) {
+    return errorReturnHandler(error);
+  }
+};
+/*******************************************************************************/
+/*                        get me service                              */
+/*******************************************************************************/
+export const getMeService = async () => {
+  try {
+    const token = Cookies.get('token');
+    const response = await axios.get(`${API_URL}/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return { status: 'success', data: response.data.data };
+  } catch (error) {
+    return errorReturnHandler(error);
+  }
+};
+/*******************************************************************************/
+/*                        update my password service                           */
+/*******************************************************************************/
+export const updateMyPasswordService = async (data) => {
+  try {
+    const token = Cookies.get('token');
+    const response = await axios.patch(
+      `${API_URL}/users/updateMyPassword`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return { status: 'success', data: response.data.data };
+  } catch (error) {
+    return errorReturnHandler(error);
+  }
+};

@@ -8,17 +8,20 @@
         <ul>
           <li>
             <router-link v-ripple class="p-ripple" to="/dashboard/projects"
-              >Projects</router-link
+              ><i class="pi pi-file"></i>Projects</router-link
             >
           </li>
           <li>
             <router-link v-ripple class="p-ripple" to="/dashboard/technology"
-              >Technology</router-link
+              ><i class="pi pi-microchip"></i>Technology</router-link
             >
           </li>
           <li>
-            <router-link v-ripple class="p-ripple" to="/dashboard/settings"
-              >Settings</router-link
+            <router-link
+              v-ripple
+              class="p-ripple"
+              to="/dashboard/settings/profile"
+              ><i class="pi pi-spin pi-cog"></i>Settings</router-link
             >
           </li>
         </ul>

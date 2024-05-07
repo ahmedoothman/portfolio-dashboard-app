@@ -1,1 +1,36 @@
 @import '@/styles/base.scss';
+.settings-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.settings-router-enter-from,
+.settings-router-leave-to {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.settings-router-enter-active {
+  transition: all 0.3s ease-out;
+}
+.settings-router-leave-active {
+  transition: all 0.3s ease-in;
+}
+.settings-router-enter-to,
+.settings-router-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Media query for mobile phones */
+@media only screen and (max-width: 600px) {
+  .settings-container {
+    flex-direction: column;
+  }
+}

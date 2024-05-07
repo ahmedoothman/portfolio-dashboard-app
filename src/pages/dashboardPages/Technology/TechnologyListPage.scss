@@ -33,7 +33,7 @@ form {
   align-items: center;
   //   padding: 10px;
   input {
-    width: 90%;
+    width: 700px;
     padding: 12px;
     margin: 10px 0px;
     margin-right: 5px;
@@ -46,6 +46,10 @@ form {
   img {
     margin-right: 5px;
   }
+}
+.list-container {
+  position: relative;
+  width: 100%;
 }
 .tech-list {
   width: 100%;

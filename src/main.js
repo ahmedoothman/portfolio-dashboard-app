@@ -10,6 +10,8 @@ import ToastService from 'primevue/toastservice';
 import Ripple from 'primevue/ripple';
 // styles
 import 'primevue/resources/themes/lara-light-blue/theme.css';
+import 'primeicons/primeicons.css';
+
 // spinner
 import SpinnerSmall from './components/ui/SpinnerSmall.vue';
 import SpinnerBig from './components/ui/SpinnerBig.vue';

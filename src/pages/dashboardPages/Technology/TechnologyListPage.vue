@@ -25,18 +25,19 @@
             </ButtonSmall>
           </div>
         </form>
-
-        <transition-group name="list" tag="div" class="tech-list">
-          <TechItemBlock
-            v-for="tech in technologies"
-            :key="tech._id"
-            :data="tech"
-            @delete-tech="deleteTechHandler"
-            :deletePending="deleteLoading"
-          />
-          <NoContentFound v-if="!isLoading && technologies.length === 0" />
-          <SpinnerBig v-if="isLoading" />
-        </transition-group>
+        <div class="list-container">
+          <transition-group name="list" tag="div" class="tech-list">
+            <TechItemBlock
+              v-for="tech in technologies"
+              :key="tech._id"
+              :data="tech"
+              @delete-tech="deleteTechHandler"
+              :deletePending="deleteLoading"
+            />
+            <SpinnerBig v-if="isLoading" />
+            <NoContentFound v-if="!isLoading && technologies.length === 0" />
+          </transition-group>
+        </div>
       </div>
     </template>
   </PagesWrapper>
