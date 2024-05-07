@@ -1,4 +1,7 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
-  transpileDependencies: true
-})
+  transpileDependencies: true,
+  chainWebpack: (config) => {
+    config.resolve.alias.set('@', path.resolve(__dirname, 'src')); // Adjust 'src' to match your actual source directory
+  },
+});
