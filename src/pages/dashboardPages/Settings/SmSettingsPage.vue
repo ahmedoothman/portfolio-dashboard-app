@@ -1,6 +1,6 @@
 <template>
   <div class="profile-settings-page">
-    <h1>Profile Settings</h1>
+    <h1>Socila Media Settings</h1>
     <div class="form-container">
       <form @submit.prevent="formHandler">
         <div class="form-group">
