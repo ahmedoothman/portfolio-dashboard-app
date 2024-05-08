@@ -88,7 +88,9 @@ export default {
         passwordConfirm: passwordConfirm.value,
       };
       await updateMyPassword(data);
-      signOut();
+      setTimeout(() => {
+        signOut();
+      }, 1000);
     };
     // lifecycle
     onMounted(async () => {});
