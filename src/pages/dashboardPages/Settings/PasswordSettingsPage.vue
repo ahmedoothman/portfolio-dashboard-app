@@ -65,6 +65,7 @@ import Password from 'primevue/password';
 import InputGroupAddon from 'primevue/inputgroupaddon';
 import { ref, onMounted } from 'vue';
 import useSettingsAPI from '@/hooks/settingsAPIHook';
+import { signOut } from '@/services/authService';
 export default {
   name: 'PasswordSettingsPage',
   components: {
@@ -87,6 +88,7 @@ export default {
         passwordConfirm: passwordConfirm.value,
       };
       await updateMyPassword(data);
+      signOut();
     };
     // lifecycle
     onMounted(async () => {});
